@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayMetrics | Sports Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">P</div><div><b>PlayMetrics</b><small>SPORTS INTELLIGENCE</small></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav-item active" data-page="overview"><span>▦</span> Overview</button>
+    <button class="nav-item" data-page="tournaments"><span>🏆</span> Tournaments</button>
+    <button class="nav-item" data-page="teams"><span>◈</span> Teams</button>
+    <button class="nav-item" data-page="players"><span>♙</span> Players</button>
+    <button class="nav-item" data-page="matches"><span>◷</span> Matches</button>
+    <button class="nav-item" data-page="performance"><span>↗</span> Performance</button>
+    <div class="sidebar-bottom"><div class="live-dot"></div><span>Database connection</span><b id="connection">Checking…</b></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">SPORTS OPERATIONS / 2026</div><h1 id="page-title">Overview</h1></div>
+      <div class="top-actions"><span class="date-chip">● Season 2026</span><div class="avatar">SC</div></div>
+    </header>
+    <section id="overview" class="page active">
+      <div class="hero"><div><span class="hero-tag">● TOURNAMENT CONTROL CENTER</span><h2>Every match tells<br><em>a bigger story.</em></h2><p>Track tournaments, teams and player performance — all in one place.</p><button class="primary-btn" onclick="showPage('tournaments')">Explore tournaments <span>↗</span></button></div><div class="hero-art"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="ball">🏏</div><div class="hero-stat"><small>SEASON STATUS</small><strong>LIVE</strong><span>2026 • INDIA</span></div></div></div>
+      <div class="section-head"><div><div class="eyebrow">AT A GLANCE</div><h2>Season overview</h2></div><span class="muted">Live database summary</span></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon purple">🏆</div><span>Tournaments</span><strong id="count-tournaments">—</strong><small>Across all formats</small></div>
+        <div class="stat-card"><div class="stat-icon blue">◈</div><span>Teams</span><strong id="count-teams">—</strong><small>Registered squads</small></div>
+        <div class="stat-card"><div class="stat-icon orange">♙</div><span>Players</span><strong id="count-players">—</strong><small>Active roster</small></div>
+        <div class="stat-card"><div class="stat-icon green">◷</div><span>Matches</span><strong id="count-matches">—</strong><small id="upcoming-count">Loading fixtures</small></div>
+      </div>
+      <div class="content-grid"><div class="panel"><div class="panel-head"><div><div class="eyebrow">FIXTURE TRACKER</div><h3>Recent matches</h3></div><button class="text-btn" onclick="showPage('matches')">All matches ↗</button></div><div id="recent-matches" class="match-list"><div class="empty">Loading matches…</div></div></div>
+      <div class="panel"><div class="panel-head"><div><div class="eyebrow">TOP PERFORMERS</div><h3>Run leaders</h3></div><span class="mini-pill">SEASON</span></div><div id="leader-list" class="leader-list"><div class="empty">Loading players…</div></div></div></div>
+    </section>
+    <section id="tournaments" class="page"><div class="section-head"><div><div class="eyebrow">COMPETITION HUB</div><h2>Tournaments</h2><p class="muted">Create and manage sporting competitions.</p></div><button class="primary-btn" onclick="openModal('tournament')">＋ New tournament</button></div><div id="tournament-list" class="card-grid"></div></section>
+    <section id="teams" class="page"><div class="section-head"><div><div class="eyebrow">SQUAD DIRECTORY</div><h2>Teams</h2><p class="muted">Registered teams and squad sizes.</p></div><button class="primary-btn" onclick="openModal('team')">＋ Add team</button></div><div id="team-list" class="card-grid"></div></section>
+    <section id="players" class="page"><div class="section-head"><div><div class="eyebrow">ATHLETE DIRECTORY</div><h2>Players</h2><p class="muted">Player profiles, teams and playing roles.</p></div><button class="primary-btn" onclick="openModal('player')">＋ Add player</button></div><div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>PLAYER</th><th>TEAM</th><th>ROLE</th><th>JERSEY</th><th>NATIONALITY</th></tr></thead><tbody id="player-rows"></tbody></table></div></div></section>
+    <section id="matches" class="page"><div class="section-head"><div><div class="eyebrow">FIXTURES & RESULTS</div><h2>Matches</h2><p class="muted">Schedule fixtures and review match results.</p></div><button class="primary-btn" onclick="openModal('match')">＋ Schedule match</button></div><div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>TOURNAMENT</th><th>FIXTURE</th><th>DATE</th><th>VENUE</th><th>STATUS</th><th>RESULT</th></tr></thead><tbody id="match-rows"></tbody></table></div></div></section>
+    <section id="performance" class="page"><div class="section-head"><div><div class="eyebrow">PLAYER ANALYTICS</div><h2>Performance centre</h2><p class="muted">Compare player contributions across recorded matches.</p></div></div><div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>RANK</th><th>PLAYER</th><th>TEAM</th><th>MATCHES</th><th>RUNS</th><th>WICKETS</th><th>CATCHES</th></tr></thead><tbody id="performance-rows"></tbody></table></div></div></section>
+    <footer>PLAYMETRICS <span>•</span> DBMS CAPSTONE PROJECT <span>•</span> POWERED BY MYSQL</footer>
+  </main>
+</div>
+<div id="modal" class="modal"><div class="modal-card"><div class="modal-head"><h3 id="modal-title">Add record</h3><button onclick="closeModal()" class="close-btn">×</button></div><form id="modal-form"><div id="modal-fields" class="form-grid"></div><div id="form-error" class="form-error"></div><button class="primary-btn submit-btn" type="submit">Save record ↗</button></form></div></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
